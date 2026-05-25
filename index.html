@@ -626,29 +626,6 @@
 
     .menu-item:hover::after { opacity: 1; }
 
-    /* ── TOAST ── */
-    .toast {
-      position: fixed;
-      top: 5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 150;
-      background: var(--dark);
-      color: var(--cream);
-      font-family: 'Raleway', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      padding: 0.85rem 1.5rem;
-      white-space: nowrap;
-      border-left: 2px solid var(--gold);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    .toast.show { opacity: 1; }
-
     /* item add flash */
     .menu-item.added {
       animation: flashItem 0.4s ease;
@@ -686,9 +663,6 @@
     <a href="#menu" class="hero-cta">Ver Menu</a>
   </div>
 </section>
-
-<!-- TOAST -->
-<div class="toast" id="toast">Toca una pizza para añadirla al pedido</div>
 
 <!-- NAV -->
 <nav id="menu">
@@ -960,17 +934,6 @@
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   }
-
-  // ── Toast de bienvenida al menú ──
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-      observer.disconnect();
-    }
-  }, { threshold: 0.5 });
-  observer.observe(document.getElementById('menu'));
 
   // ── Smooth scroll para el botón del hero ──
   document.querySelector('.hero-cta').addEventListener('click', function(e) {
